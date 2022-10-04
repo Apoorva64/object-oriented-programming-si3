@@ -46,4 +46,11 @@ class PositionTest {
         position1 = new Position(0, 0);
         position2 = new Position(0, 0);
     }
+
+    @Test
+    void toStringTest() {
+        System.out.println(position1.toString());
+        assertTrue(true);
+
+    }
 }

@@ -26,4 +26,10 @@ class GPSTest {
 
     }
 
+    @Test
+    void toStringTest() {
+        System.out.println(gps.toString());
+        assertTrue(true);
+
+    }
 }

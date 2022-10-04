@@ -70,4 +70,9 @@ public class Battery {
         return maxCharge;
     }
 
+    @Override
+    public String toString() {
+        return "Battery [charge=" + charge + ", maxCharge=" + maxCharge + "]";
+    }
+
 }

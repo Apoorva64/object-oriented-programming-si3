@@ -53,4 +53,10 @@ class BatteryTest {
     void getMaxCharge() {
         assertEquals(100, battery.getMaxCharge());
     }
+
+    @Test
+    void toStringTest() {
+        System.out.println(battery.toString());
+        assertTrue(true);
+    }
 }

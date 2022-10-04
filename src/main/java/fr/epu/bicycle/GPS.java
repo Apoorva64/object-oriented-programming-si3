@@ -35,4 +35,9 @@ public class GPS {
     public Position getPosition() {
         return position;
     }
+
+    @Override
+    public String toString() {
+        return "GPS [position=" + position + "]";
+    }
 }

@@ -74,5 +74,10 @@ public class EBike {
         return gps.getPosition();
     }
 
+    @Override
+    public String toString() {
+        return "EBike [km=" + km + ", gps=" + gps + ", battery=" + battery + "]";
+    }
+
 
 }

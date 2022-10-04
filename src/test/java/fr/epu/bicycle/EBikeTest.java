@@ -43,4 +43,11 @@ class EBikeTest {
     void setUp() {
         bike = new EBike();
     }
+
+    @Test
+    void toStringTest() {
+        System.out.println(bike.toString());
+        assertTrue(true);
+
+    }
 }
