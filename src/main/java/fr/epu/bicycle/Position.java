@@ -1,6 +1,8 @@
 package fr.epu.bicycle;
 
 
+import java.util.Objects;
+
 /**
  * Position represents a position in a 2D space.
  *
@@ -9,6 +11,20 @@ package fr.epu.bicycle;
 public class Position {
     private double x;
     private double y;
+    private static final double EPSILON = 0.0001;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position = (Position) o;
+        return position.x - x < EPSILON && position.y - y < EPSILON;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
+    }
 
     /**
      * Creates a position with a given x and y.

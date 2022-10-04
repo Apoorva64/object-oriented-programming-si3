@@ -1,28 +1,46 @@
 package fr.epu.bicycle;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class EBikeTest {
+    private EBike bike;
 
-    @org.junit.jupiter.api.Test
+
+    @Test
     void testCreateEBike() {
-        EBike bike = new EBike();
         assertEquals(EBike.INITIAL_DISTANCE, bike.getKm());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void testAddKm() {
-        EBike bike = new EBike();
         int value = 5;
         bike.addKm(value);
         assertEquals(value + EBike.INITIAL_DISTANCE, bike.getKm());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void testAddNegativeKm() {
-        EBike bike = new EBike();
         int value = -5;
         bike.addKm(value);
-        assertEquals(EBike.INITIAL_DISTANCE,bike.getKm());
+        assertEquals(EBike.INITIAL_DISTANCE, bike.getKm());
+    }
+
+    @Test
+    void testGetCharge() {
+        assertEquals(EBike.INITIAL_CHARGE, bike.getCharge());
+    }
+
+    @Test
+    void testGetPosition() {
+        assertEquals(new Position(0, 0), bike.getPosition());
+    }
+
+
+    @BeforeEach
+    void setUp() {
+        bike = new EBike();
     }
 }
