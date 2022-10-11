@@ -1,6 +1,7 @@
 package fr.epu.bicycle;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -53,4 +54,24 @@ class PositionTest {
         assertTrue(true);
 
     }
+
+    @Nested
+    class testDistance {
+        @Test
+        void testSameDistance() {
+            Position position1 = new Position(0, 0);
+            Position position2 = new Position(0, 0);
+            assertEquals(0, position1.distanceTo(position2));
+        }
+
+        @Test
+        void testDistance() {
+            Position position1 = new Position(0, 0);
+            Position position2 = new Position(0, 10);
+            assertEquals(10, position1.distanceTo(position2));
+        }
+
+    }
+
 }
+

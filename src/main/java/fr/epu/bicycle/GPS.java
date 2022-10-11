@@ -40,4 +40,6 @@ public class GPS {
     public String toString() {
         return "GPS [position=" + position + "]";
     }
+
+
 }

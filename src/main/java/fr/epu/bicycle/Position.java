@@ -78,5 +78,19 @@ public class Position {
         return "Position [x=" + x + ", y=" + y + "]";
     }
 
+    /**
+     * Calculates the distance between the current position and the given position.
+     *
+     * @param position the position to calculate the distance to
+     * @return the distance between the current position and the given position
+     */
+    public double distanceTo(Position position) {
+        double xDelta = position.getX() - this.getX();
+        double yDelta = position.getY() - this.getY();
+        return Math.sqrt(xDelta * xDelta + yDelta * yDelta);
+
+
+    }
+
 }
 
