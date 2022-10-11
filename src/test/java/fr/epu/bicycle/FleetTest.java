@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class FleetTest {
@@ -12,7 +14,6 @@ class FleetTest {
     @BeforeEach
     void setUp() {
         fleet = new Fleet();
-        fleet.addElectricVehicle(new EBike());
 
     }
 
@@ -22,29 +23,38 @@ class FleetTest {
     }
 
     @Test
-    void addElectricVehicle() {
-        fleet.addElectricVehicle(new EBike());
-        assertEquals(2, fleet.getNbElectricVehicles());
+    void testAddBike() {
+        fleet.addVehicle(new EBike());
+        assertEquals(1, fleet.numberOfVehicles());
     }
 
     @Test
-    void removeElectricVehicle() {
-        fleet.removeElectricVehicle(fleet.getElectricVehicle(0));
-        assertEquals(0, fleet.getNbElectricVehicles());
+    void testGetVehiclesAroundAPosition() {
+        fleet.addVehicle(new EBike());
+        fleet.addVehicle(new EBike());
+        fleet.addVehicle(new EBike());
+        assertEquals(3, fleet.getVehiclesAround(new Position(0, 0), 5).size());
     }
 
     @Test
-    void getNbElectricVehicles() {
-        assertEquals(1, fleet.getNbElectricVehicles());
+    void evaluateTime4around() {
+        long totalTime = 0;
+        for (int i = 0; i < 1000; i++) {
+            // add random vehicles
+            for (int j = 0; j < 1000; j++) {
+                fleet.addVehicle(new EBike());
+            }
+        }
+        Position currentPosition = new Position(7, 7);
+        for (int i = 0; i < 1000; i++) {
+            long startTime = System.nanoTime();
+            fleet.getVehiclesAround(currentPosition, 10);
+            long endTime = System.nanoTime();
+            long durationInNano = (endTime - startTime);  //Total execution time in nano seconds
+            totalTime += durationInNano;
+        }
+        System.out.println("total time in nano : " + totalTime);
+        System.out.println("total time in milli : " + TimeUnit.NANOSECONDS.toMillis(totalTime));
     }
 
-    @Test
-    void getElectricVehicle() {
-        assertEquals(EBike.class, fleet.getElectricVehicle(0).getClass());
-    }
-
-    @Test
-    void getElectricVehiclesAround() {
-        assertEquals(1, fleet.getElectricVehiclesAround(new Position(0, 0), 10).size());
-    }
 }

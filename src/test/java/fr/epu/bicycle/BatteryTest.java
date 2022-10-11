@@ -15,43 +15,19 @@ class BatteryTest {
 
     @Test
     void getCharge() {
-        assertEquals(50, battery.getCharge());
+        assertEquals(0, battery.getCharge());
     }
 
     @Test
     void charge() {
         battery.charge(10);
-        assertEquals(60, battery.getCharge());
+        assertEquals(10, battery.getCharge());
     }
 
     @Test
     void chargeMax() {
         battery.charge(60);
-        assertEquals(100, battery.getCharge());
-    }
-
-    @Test
-    void discharge() {
-        battery.discharge(10);
-        assertEquals(40, battery.getCharge());
-    }
-
-    @Test
-    void dischargeMin() {
-        battery.discharge(60);
-        assertEquals(0, battery.getCharge());
-    }
-
-
-    @Test
-    void setMaxCharge() {
-        battery.setMaxCharge(200);
-        assertEquals(200, battery.getMaxCharge());
-    }
-
-    @Test
-    void getMaxCharge() {
-        assertEquals(100, battery.getMaxCharge());
+        assertEquals(50, battery.getCharge());
     }
 
     @Test

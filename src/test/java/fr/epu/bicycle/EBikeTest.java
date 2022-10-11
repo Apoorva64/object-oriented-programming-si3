@@ -1,5 +1,6 @@
 package fr.epu.bicycle;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,8 +25,7 @@ class EBikeTest {
     @Test
     void testAddNegativeKm() {
         int value = -5;
-        bike.addKm(value);
-        assertEquals(EBike.INITIAL_DISTANCE, bike.getKm());
+        assertThrows(IllegalArgumentException.class, () -> bike.addKm(value));
     }
 
     @Test
@@ -35,7 +35,8 @@ class EBikeTest {
 
     @Test
     void testGetPosition() {
-        assertEquals(new Position(0, 0), bike.getPosition());
+
+        assertEquals(new Position(0, 0), bike.getPosition().orElseThrow());
     }
 
 
@@ -44,10 +45,16 @@ class EBikeTest {
         bike = new EBike();
     }
 
+    @AfterEach
+    void tearDown() {
+        bike = null;
+    }
+
     @Test
     void toStringTest() {
         System.out.println(bike.toString());
         assertTrue(true);
 
     }
+
 }

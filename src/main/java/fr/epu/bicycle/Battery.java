@@ -6,73 +6,34 @@ package fr.epu.bicycle;
  * @author Appadoo Apoorva Srinivas
  */
 public class Battery {
-    private int charge;
-    private int maxCharge = 100;
 
-    /**
-     * Creates a battery with a given charge.
-     *
-     * @param initialCharge the initial charge of the battery
-     */
-    public Battery(int initialCharge) {
-        this.charge = initialCharge;
-    }
+    private int charge = 0;
+    private final int maxCharge;
+    public static final int DEFAULT_MAX_CHARGE = 100;
 
-    /**
-     * Returns the current charge of the battery.
-     *
-     * @return the current charge of the battery
-     */
     public int getCharge() {
         return charge;
     }
 
 
-    /**
-     * Charges the battery by <code>nbChargeToAdd</code> units. The charge cannot exceed the maximum charge.
-     *
-     * @param charge the charge to set
-     */
-    public void charge(int charge) {
-        this.charge += charge;
-        if (this.charge > maxCharge) {
-            this.charge = maxCharge;
-        }
+    public Battery(int maxLevel) {
+        maxCharge = maxLevel;
     }
 
-    /**
-     * Discharges the battery by <code>nbChargeToSubtract</code> units. The charge cannot be negative.
-     *
-     * @param charge the charge to set
-     */
-    public void discharge(int charge) {
-        this.charge -= charge;
-        if (this.charge < 0) {
-            this.charge = 0;
-        }
+    public Battery() {
+        this(DEFAULT_MAX_CHARGE);
     }
 
-    /**
-     * set the maximum charge of the battery.
-     *
-     * @param maxCharge the maximum charge of the battery
-     */
-    public void setMaxCharge(int maxCharge) {
-        this.maxCharge = maxCharge;
+    public void charge(int energy) {
+        charge += energy;
+        if (charge > maxCharge)
+            charge = maxCharge;
     }
 
-    /**
-     * Returns the maximum charge of the battery.
-     *
-     * @return the maximum charge of the battery
-     */
-    public int getMaxCharge() {
-        return maxCharge;
-    }
 
-    @Override
-    public String toString() {
-        return "Battery [charge=" + charge + ", maxCharge=" + maxCharge + "]";
+    public double getChargePercent() {
+        return charge * 100 / (double) maxCharge;
     }
-
 }
+
+

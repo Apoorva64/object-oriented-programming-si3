@@ -30,17 +30,6 @@ class PositionTest {
         assertEquals(0, position1.getY());
     }
 
-    @Test
-    void setX() {
-        position1.setX(10);
-        assertEquals(10, position1.getX());
-    }
-
-    @Test
-    void setY() {
-        position1.setY(10);
-        assertEquals(10, position1.getY());
-    }
 
     @BeforeEach
     void setUp() {
@@ -61,14 +50,14 @@ class PositionTest {
         void testSameDistance() {
             Position position1 = new Position(0, 0);
             Position position2 = new Position(0, 0);
-            assertEquals(0, position1.distanceTo(position2));
+            assertEquals(0, position1.distance(position2));
         }
 
         @Test
-        void testDistance() {
+        void testDifferentDistance() {
             Position position1 = new Position(0, 0);
             Position position2 = new Position(0, 10);
-            assertEquals(10, position1.distanceTo(position2));
+            assertEquals(10, position1.distance(position2));
         }
 
     }

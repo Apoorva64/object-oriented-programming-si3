@@ -4,21 +4,67 @@ package fr.epu.bicycle;
 import java.util.Objects;
 
 /**
- * Position represents a position in a 2D space.
+ * TP java
  *
- * @author Appadoo Apoorva Srinivas
+ * @author frÃ©dÃ©ric rallo - frederic.rallo@univ-cotedazur.fr
+ * @author Mireille Blay-Fornarino
  */
 public class Position {
-    private double x;
-    private double y;
-    private static final double EPSILON = 0.0001;
+    private final double x;
+    private final double y;
+
+    private static final double EPSILON = 0.001;
+
+    // -------------------------- accesseurs ------------
+
+    //We prohibit changing a position externally
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    //-------------- constructeurs ----------------
+
+    /**
+     * constructeur normal
+     *
+     * @param ix l'abscisse du point
+     * @param iy l'ordonnÃ©e du point
+     */
+    public Position(double ix, double iy) {
+        x = ix;
+        y = iy;
+    }
+
+    /**
+     * default constructor
+     */
+    public Position() {
+        this(0, 0);
+    }
+
+    // ------------------------ public methods
+
+    /**
+     * calculate the distance to another position
+     *
+     * @param p another position
+     * @return a norm distance of the vector (this,p)
+     */
+    public double distance(Position p) {
+        return Math.sqrt((p.y - y) * (p.y - y) + (p.x - x) * (p.x - x));
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Position position = (Position) o;
-        return position.x - x < EPSILON && position.y - y < EPSILON;
+        return Math.abs(position.x - x) < EPSILON &&
+                Math.abs(position.y - y) < EPSILON;
     }
 
     @Override
@@ -26,71 +72,32 @@ public class Position {
         return Objects.hash(x, y);
     }
 
+    // ---- Non demandÃ©es dans le TD
+
     /**
-     * Creates a position with a given x and y.
+     * calcule le point projetÃ© de ce point sur l'axe des abscisses
      *
-     * @param x the x coordinate
-     * @param y the y coordinate
+     * @return un nouveau Point
      */
-    public Position(double x, double y) {
-        this.x = x;
-        this.y = y;
+    public Position projX() {
+        return new Position(x, 0);
     }
 
     /**
-     * Returns the x coordinate of the position.
+     * calcule le point projetÃ© de ce point sur l'axe des ordonnÃ©es
      *
-     * @return the x coordinate
+     * @return un nouveau Point
      */
-    public double getX() {
-        return x;
+    public Position projY() {
+        return new Position(0, y);
     }
+    //------------------------------------
 
-    /**
-     * Returns the y coordinate of the position.
-     *
-     * @return the y coordinate
-     */
-    public double getY() {
-        return y;
-    }
-
-    /**
-     * Sets the x coordinate of the position.
-     *
-     * @param x the x to set
-     */
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    /**
-     * Sets the y coordinate of the position.
-     *
-     * @param y the y to set
-     */
-    public void setY(double y) {
-        this.y = y;
-    }
 
     @Override
     public String toString() {
-        return "Position [x=" + x + ", y=" + y + "]";
+        return "(" + x + " ; " + y + ")";
     }
 
-    /**
-     * Calculates the distance between the current position and the given position.
-     *
-     * @param position the position to calculate the distance to
-     * @return the distance between the current position and the given position
-     */
-    public double distanceTo(Position position) {
-        double xDelta = position.getX() - this.getX();
-        double yDelta = position.getY() - this.getY();
-        return Math.sqrt(xDelta * xDelta + yDelta * yDelta);
-
-
-    }
 
 }
-

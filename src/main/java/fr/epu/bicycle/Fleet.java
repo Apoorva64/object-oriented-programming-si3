@@ -4,62 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Fleet {
-    private final ArrayList<ElectricVehicle> electricVehicles;
+    private final ArrayList<Trackable> vehicles = new ArrayList<>();
 
-    /**
-     * Creates a fleet of electric vehicles.
-     */
-    public Fleet() {
-        this.electricVehicles = new ArrayList<>();
+    int numberOfVehicles() {
+        return vehicles.size();
     }
 
-
-    /**
-     * Adds an electric vehicle to the fleet.
-     *
-     * @param electricVehicle the electric vehicle to add
-     */
-    public void addElectricVehicle(EBike electricVehicle) {
-        electricVehicles.add(electricVehicle);
+    void addVehicle(Trackable vehicle) {
+        vehicles.add(vehicle);
     }
 
-    /**
-     * Removes an electric vehicle from the fleet.
-     *
-     * @param electricVehicle the electric vehicle to remove
-     */
-    public void removeElectricVehicle(ElectricVehicle electricVehicle) {
-        electricVehicles.remove(electricVehicle);
+    Trackable getVehicle(int index) {
+        return vehicles.get(index);
     }
 
-    /**
-     * Returns the number of electric vehicles in the fleet.
-     *
-     * @return the number of electric vehicles in the fleet
-     */
-    public int getNbElectricVehicles() {
-        return electricVehicles.size();
+    void removeVehicle(int index) {
+        vehicles.remove(index);
     }
 
-    /**
-     * Returns the electric vehicle at the given index.
-     *
-     * @param index the index of the electric vehicle to get
-     * @return the electric vehicle at the given index
-     */
-    public ElectricVehicle getElectricVehicle(int index) {
-        return electricVehicles.get(index);
+    void removeVehicle(Trackable vehicle) {
+        vehicles.remove(vehicle);
     }
 
-    /**
-     * Returns the electric vehicles that are in a circle of radius <code>radius</code> centered at <code>position</code>.
-     *
-     * @return the electric vehicles that are around a given position
-     */
-    public List<ElectricVehicle> getElectricVehiclesAround(Position position, double radius) {
-        return electricVehicles.stream()
-                .filter(electricVehicle -> electricVehicle.getPosition().distanceTo(position) <= radius)
+    void removeAllVehicles() {
+        vehicles.clear();
+    }
+
+    List<Trackable> getVehiclesAround(Position position, double radius) {
+        return vehicles.stream()
+                .filter(vehicle -> vehicle.getPosition().orElse(new Position(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY)).distance(position) <= radius)
                 .toList();
-
     }
+
 }

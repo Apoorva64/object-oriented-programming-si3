@@ -1,40 +1,46 @@
 package fr.epu.bicycle;
 
-public abstract class ElectricVehicle {
+import java.util.Optional;
 
-    protected int km;
-    protected GPS gps;
-    protected Battery battery;
-    static final int INITIAL_CHARGE = 100;
+public abstract class ElectricVehicle implements Trackable {
+    static final int INITIAL_CHARGE = 12;
+    private final GPS gps;
+    private final Battery battery;
+    protected double km;
 
+    protected ElectricVehicle(Battery battery, GPS gps) {
+        this.battery = battery;
+        this.gps = gps;
+    }
 
-    /**
-     * Creates an ElectricVehicle with a given initial charge and initial distance.
-     */
     protected ElectricVehicle() {
-        this.km = 0;
-        this.gps = new GPS();
-        this.battery = new Battery(INITIAL_CHARGE);
+        this(new Battery(), new GPS());
+        this.battery.charge(INITIAL_CHARGE);
     }
 
     /**
-     * Returns the current distance of the EBike.
+     * Convert miles to km
      *
-     * @return the km
+     * @param miles the distance in miles
      */
-    public int getKm() {
+    public static double milesToKm(double miles) {
+        return miles * 1.609344;
+    }
+
+    /**
+     * Convert km to miles
+     *
+     * @param km the distance in km
+     */
+    public static double kmToMiles(double km) {
+        return km / 1.609344;
+    }
+
+    public double getKm() {
         return km;
     }
 
-    /**
-     * Sets the distance of the EBike. The distance cannot be negative.
-     *
-     * @param km the km to set
-     */
-    private void setKm(int km) {
-        if (km < 0) {
-            throw new IllegalArgumentException("The distance cannot be negative");
-        }
+    private void setKm(double km) {
         this.km = km;
     }
 
@@ -43,28 +49,31 @@ public abstract class ElectricVehicle {
      *
      * @param nbKmToAdd the number of km to add
      */
-    public void addKm(int nbKmToAdd) {
-        if (nbKmToAdd > 0) {
-            setKm(getKm() + nbKmToAdd);
-        }
+    public void addKm(double nbKmToAdd) {
+        if (nbKmToAdd < 0)
+            throw new IllegalArgumentException("The number of km to add must be positive");
+        setKm(getKm() + nbKmToAdd);
     }
 
-    /**
-     * Returns the current charge of the battery.
-     *
-     * @return the charge of the battery
-     */
     public int getCharge() {
         return battery.getCharge();
     }
 
-    /**
-     * Returns the current position of the EBike.
-     *
-     * @return the gps position
-     */
-    public Position getPosition() {
-        return gps.getPosition();
+    public void charge(int energy) {
+        battery.charge(energy);
     }
 
+    public double getChargePercent() {
+        return battery.getChargePercent();
+    }
+
+    /**
+     * Checks if the battery is not empty and returns the position of the scooter.
+     *
+     * @return the position
+     */
+    @Override
+    public Optional<Position> getPosition() {
+        return Optional.ofNullable(getCharge() > 0 ? gps.getPosition() : null);
+    }
 }
