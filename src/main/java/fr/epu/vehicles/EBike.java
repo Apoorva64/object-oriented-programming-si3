@@ -8,7 +8,7 @@ import java.util.Scanner;
  *
  * @author M. Blay-Fornarino
  */
-public class EBike extends ElectricTracableItem {
+public class EBike extends BorrowableElectricTrackableItem {
     static final int INITIAL_DISTANCE = 1;
 
     /**

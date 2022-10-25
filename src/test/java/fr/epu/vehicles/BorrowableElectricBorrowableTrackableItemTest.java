@@ -8,14 +8,14 @@ class BorrowableElectricBorrowableTrackableItemTest {
 
     @Test
     void borrow() {
-        BorrowableElectricTracableItem vehicle = new BorrowableElectricTracableItem(new Battery(50), new GPS());
+        BorrowableElectricTrackableItem vehicle = new BorrowableElectricTrackableItem(new Battery(50), new GPS());
         vehicle.charge(50);
         vehicle.borrow();
     }
 
     @Test
     void returnBorrowable() {
-        BorrowableElectricTracableItem vehicle = new BorrowableElectricTracableItem(new Battery(50), new GPS());
+        BorrowableElectricTrackableItem vehicle = new BorrowableElectricTrackableItem(new Battery(50), new GPS());
         vehicle.charge(50);
         vehicle.borrow();
         vehicle.returnBorrowable();
@@ -23,13 +23,13 @@ class BorrowableElectricBorrowableTrackableItemTest {
 
     @Test
     void borrowNotEnoughCharge() {
-        BorrowableElectricTracableItem vehicle = new BorrowableElectricTracableItem(new Battery(10), new GPS());
+        BorrowableElectricTrackableItem vehicle = new BorrowableElectricTrackableItem(new Battery(10), new GPS());
         assertThrows(IllegalStateException.class, vehicle::borrow);
     }
 
     @Test
     void borrowAlreadyBorrowed() {
-        BorrowableElectricTracableItem vehicle = new BorrowableElectricTracableItem(new Battery(50), new GPS());
+        BorrowableElectricTrackableItem vehicle = new BorrowableElectricTrackableItem(new Battery(50), new GPS());
         vehicle.charge(50);
         vehicle.borrow();
         assertThrows(IllegalStateException.class, vehicle::borrow);
@@ -37,7 +37,7 @@ class BorrowableElectricBorrowableTrackableItemTest {
 
     @Test
     void returnAlreadyReturned() {
-        BorrowableElectricTracableItem vehicle = new BorrowableElectricTracableItem(new Battery(50), new GPS());
+        BorrowableElectricTrackableItem vehicle = new BorrowableElectricTrackableItem(new Battery(50), new GPS());
         assertThrows(IllegalStateException.class, vehicle::returnBorrowable);
     }
 

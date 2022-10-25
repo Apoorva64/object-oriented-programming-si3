@@ -2,18 +2,18 @@ package fr.epu.vehicles;
 
 import java.util.Optional;
 
-public abstract class ElectricTracableItem implements Trackable {
+public abstract class ElectricTrackableItem implements Trackable {
     static final int INITIAL_CHARGE = 12;
-    private final GPS gps;
-    private final Battery battery;
+    protected final GPS gps;
+    protected final Battery battery;
     protected double km;
 
-    protected ElectricTracableItem(Battery battery, GPS gps) {
+    protected ElectricTrackableItem(Battery battery, GPS gps) {
         this.battery = battery;
         this.gps = gps;
     }
 
-    protected ElectricTracableItem() {
+    protected ElectricTrackableItem() {
         this(new Battery(), new GPS());
         this.battery.charge(INITIAL_CHARGE);
     }

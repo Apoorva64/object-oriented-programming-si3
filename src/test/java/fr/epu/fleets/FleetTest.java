@@ -11,11 +11,11 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FleetTest {
-    private Fleet fleet;
+    private Fleet<EBike> fleet;
 
     @BeforeEach
     void setUp() {
-        fleet = new Fleet();
+        fleet = new Fleet<>();
 
     }
 

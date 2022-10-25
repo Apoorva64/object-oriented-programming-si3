@@ -1,7 +1,7 @@
 package fr.epu.vehicles;
 
 
-public class Scooter extends ElectricTracableItem {
+public class Scooter extends BorrowableElectricTrackableItem {
     private final double maxSpeed;
 
     public Scooter(int maxSpeed) {

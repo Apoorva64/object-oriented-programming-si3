@@ -1,12 +1,15 @@
 package fr.epu.vehicles;
 
-public class BorrowableElectricTracableItem extends ElectricTracableItem implements Borrowable {
+public class BorrowableElectricTrackableItem extends ElectricTrackableItem implements BorrowableTrackableItem {
     private boolean borrowed = false;
 
-    public BorrowableElectricTracableItem(Battery battery, GPS gps) {
+    public BorrowableElectricTrackableItem(Battery battery, GPS gps) {
         super(battery, gps);
     }
-
+    protected BorrowableElectricTrackableItem() {
+        super(new Battery(), new GPS());
+        this.battery.charge(INITIAL_CHARGE);
+    }
     @Override
     public boolean isBorrowable() {
         return !borrowed;
