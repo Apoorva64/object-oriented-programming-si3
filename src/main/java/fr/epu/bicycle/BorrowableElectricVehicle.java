@@ -15,7 +15,7 @@ public class BorrowableElectricVehicle extends ElectricVehicle implements Borrow
         }
 
         if (borrowed) {
-            throw new IllegalStateException("Bike already borrowed");
+            throw new IllegalStateException("Vehicle already borrowed");
         }
         borrowed = true;
     }
@@ -24,7 +24,7 @@ public class BorrowableElectricVehicle extends ElectricVehicle implements Borrow
     @Override
     public void returnBorrowable() {
         if (!borrowed) {
-            throw new IllegalStateException("Bike already returned");
+            throw new IllegalStateException("Vehicle already returned");
         }
         borrowed = false;
 

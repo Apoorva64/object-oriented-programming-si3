@@ -39,9 +39,9 @@ class FleetTest {
     @Test
     void evaluateTime4around() {
         long totalTime = 0;
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10; i++) {
             // add random vehicles
-            for (int j = 0; j < 1000; j++) {
+            for (int j = 0; j < 10; j++) {
                 fleet.addVehicle(new EBike());
             }
         }
