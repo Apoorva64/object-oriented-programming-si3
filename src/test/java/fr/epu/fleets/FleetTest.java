@@ -1,12 +1,14 @@
-package fr.epu.bicycle;
+package fr.epu.fleets;
 
+import fr.epu.vehicles.EBike;
+import fr.epu.vehicles.Position;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FleetTest {
     private Fleet fleet;
@@ -24,16 +26,16 @@ class FleetTest {
 
     @Test
     void testAddBike() {
-        fleet.addVehicle(new EBike());
-        assertEquals(1, fleet.numberOfVehicles());
+        fleet.add(new EBike());
+        assertEquals(1, fleet.size());
     }
 
     @Test
     void testGetVehiclesAroundAPosition() {
-        fleet.addVehicle(new EBike());
-        fleet.addVehicle(new EBike());
-        fleet.addVehicle(new EBike());
-        assertEquals(3, fleet.getVehiclesAround(new Position(0, 0), 5).size());
+        fleet.add(new EBike());
+        fleet.add(new EBike());
+        fleet.add(new EBike());
+        assertEquals(3, fleet.closeTo(new Position(0, 0), 5).size());
     }
 
     @Test
@@ -42,13 +44,13 @@ class FleetTest {
         for (int i = 0; i < 10; i++) {
             // add random vehicles
             for (int j = 0; j < 10; j++) {
-                fleet.addVehicle(new EBike());
+                fleet.add(new EBike());
             }
         }
         Position currentPosition = new Position(7, 7);
         for (int i = 0; i < 1000; i++) {
             long startTime = System.nanoTime();
-            fleet.getVehiclesAround(currentPosition, 10);
+            fleet.closeTo(currentPosition, 10);
             long endTime = System.nanoTime();
             long durationInNano = (endTime - startTime);  //Total execution time in nano seconds
             totalTime += durationInNano;

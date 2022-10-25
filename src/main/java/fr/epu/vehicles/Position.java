@@ -1,4 +1,4 @@
-package fr.epu.bicycle;
+package fr.epu.vehicles;
 
 
 import java.util.Objects;

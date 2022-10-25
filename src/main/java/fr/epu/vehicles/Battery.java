@@ -1,4 +1,4 @@
-package fr.epu.bicycle;
+package fr.epu.vehicles;
 
 /**
  * Battery represents a battery that can be charged and discharged.
@@ -17,6 +17,9 @@ public class Battery {
 
 
     public Battery(int maxLevel) {
+        if (maxLevel <= 0) {
+            throw new IllegalArgumentException("Max charge must be positive");
+        }
         maxCharge = maxLevel;
     }
 

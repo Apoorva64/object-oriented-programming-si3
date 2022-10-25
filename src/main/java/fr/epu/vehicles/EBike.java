@@ -1,4 +1,4 @@
-package fr.epu.bicycle;
+package fr.epu.vehicles;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -8,7 +8,7 @@ import java.util.Scanner;
  *
  * @author M. Blay-Fornarino
  */
-public class EBike extends ElectricVehicle {
+public class EBike extends ElectricTracableItem {
     static final int INITIAL_DISTANCE = 1;
 
     /**

@@ -1,12 +1,16 @@
-package fr.epu.bicycle;
+package fr.epu.vehicles;
 
-public class BorrowableElectricVehicle extends ElectricVehicle implements Borrowable {
+public class BorrowableElectricTracableItem extends ElectricTracableItem implements Borrowable {
     private boolean borrowed = false;
 
-    public BorrowableElectricVehicle(Battery battery, GPS gps) {
+    public BorrowableElectricTracableItem(Battery battery, GPS gps) {
         super(battery, gps);
     }
 
+    @Override
+    public boolean isBorrowable() {
+        return !borrowed;
+    }
 
     @Override
     public void borrow() {

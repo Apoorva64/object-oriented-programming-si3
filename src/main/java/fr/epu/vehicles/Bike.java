@@ -1,12 +1,24 @@
-package fr.epu.bicycle;
+package fr.epu.vehicles;
 
 import java.util.Optional;
 
-public class Bike implements Vehicle {
+public class Bike implements BorrowableTrackableItem {
+    public Optional<Station> getStation() {
+        if (station == null) {
+            return Optional.empty();
+        }
+        return Optional.of(station);
+    }
+
     private Station station;
 
     public Bike(Station station) {
         this.station = station;
+    }
+
+    @Override
+    public boolean isBorrowable() {
+        return station != null;
     }
 
     @Override

@@ -1,19 +1,19 @@
-package fr.epu.bicycle;
+package fr.epu.vehicles;
 
 import java.util.Optional;
 
-public abstract class ElectricVehicle implements Trackable {
+public abstract class ElectricTracableItem implements Trackable {
     static final int INITIAL_CHARGE = 12;
     private final GPS gps;
     private final Battery battery;
     protected double km;
 
-    protected ElectricVehicle(Battery battery, GPS gps) {
+    protected ElectricTracableItem(Battery battery, GPS gps) {
         this.battery = battery;
         this.gps = gps;
     }
 
-    protected ElectricVehicle() {
+    protected ElectricTracableItem() {
         this(new Battery(), new GPS());
         this.battery.charge(INITIAL_CHARGE);
     }
@@ -75,5 +75,9 @@ public abstract class ElectricVehicle implements Trackable {
     @Override
     public Optional<Position> getPosition() {
         return Optional.ofNullable(getCharge() > 0 ? gps.getPosition() : null);
+    }
+
+    public GPS getGps() {
+        return gps;
     }
 }
