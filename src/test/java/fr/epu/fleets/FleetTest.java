@@ -1,7 +1,8 @@
 package fr.epu.fleets;
 
-import fr.epu.vehicles.EBike;
-import fr.epu.vehicles.Position;
+import TD1.fr.epu.fleets.Fleet;
+import TD1.fr.epu.vehicles.EBike;
+import TD1.fr.epu.vehicles.Position;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

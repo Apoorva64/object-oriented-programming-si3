@@ -1,6 +1,7 @@
 package fr.epu.fleets;
 
-import fr.epu.vehicles.EBike;
+import TD1.fr.epu.fleets.FleetOfEBike;
+import TD1.fr.epu.vehicles.EBike;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

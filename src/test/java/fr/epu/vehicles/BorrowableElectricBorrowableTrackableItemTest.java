@@ -1,5 +1,8 @@
 package fr.epu.vehicles;
 
+import TD1.fr.epu.vehicles.Battery;
+import TD1.fr.epu.vehicles.BorrowableElectricTrackableItem;
+import TD1.fr.epu.vehicles.GPS;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
