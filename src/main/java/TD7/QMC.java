@@ -18,7 +18,8 @@ public class QMC {
     public QMC(int... values) {
         this.values = values;
         bits = Minterm.numberOfBitsNeeded(Arrays.stream(values).max().orElseThrow());
-        categoryManager = new CategoryManager(Arrays.stream(values).mapToObj(value -> new Minterm(value, bits)).collect(Collectors.toCollection(ArrayList::new)), bits);
+        ArrayList<Minterm> minterms = Arrays.stream(values).mapToObj(value -> new Minterm(value, bits)).collect(Collectors.toCollection(ArrayList::new));
+        categoryManager = new CategoryManager(minterms, bits);
     }
 
     /**
